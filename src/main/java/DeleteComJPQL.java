@@ -1,17 +1,27 @@
 import model.Cliente;
+import model.Compras;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import javax.persistence.*;
-import java.util.List;
 
-public class aula3 {
+public class DeleteComJPQL {
     private static EntityManagerFactory entityManagerFactory =
             Persistence.createEntityManagerFactory("BancoPU");
 
     private static EntityManager entityManager = entityManagerFactory.createEntityManager();
 
     public static void main(String[] args) {
+        Compras compras = new Compras();
+        compras.setProduto("Arroz");
+        Cliente cliente = new Cliente();
+        cliente.setNome("Rodolfo");
+        cliente.setCompras(compras);
+
+        entityManager.getTransaction().begin();
+        entityManager.persist(compras);
+        entityManager.persist(cliente);
+        entityManager.getTransaction().commit();
 
         entityManager.getTransaction().begin();
 

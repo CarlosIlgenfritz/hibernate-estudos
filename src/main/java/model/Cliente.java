@@ -23,5 +23,6 @@ public class Cliente {
     @JoinColumn(name = "compras_id")
     private Compras compras;
 
-
+    @Embedded
+    private DadosPessoais dadosPessoais;
 }
